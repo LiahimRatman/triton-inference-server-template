@@ -1,0 +1,33 @@
+name: "jina_clip_v2"
+backend: "python"
+
+max_batch_size: 128
+
+input [
+  {
+    name: "INPUT"
+    data_type: TYPE_STRING   # HTTP datatype: BYTES
+    dims: [ -1 ]             # после batch: [batch, -1] => в тесте [batch, 1]
+  },
+  {
+    name: "TYPE"
+    data_type: TYPE_STRING   # HTTP datatype: BYTES
+    dims: [ 1 ]              # после batch: [batch, 1] => в тесте [1, 1]
+  }
+]
+
+output [
+  {
+    name: "EMBEDDINGS"
+    data_type: TYPE_FP32
+    dims: [ 1024 ]
+  }
+]
+
+instance_group [
+  {
+    kind: KIND_GPU
+    count: 1
+    gpus: [1]
+  }
+]

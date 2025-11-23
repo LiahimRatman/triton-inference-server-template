@@ -1,0 +1,28 @@
+name: "jina_embeddings_v4"
+backend: "python"
+
+max_batch_size: 128
+
+input [
+  {
+    name: "TEXT"
+    data_type: TYPE_STRING   # по HTTP будет datatype: "BYTES"
+    dims: [ -1 ]             # после добавления batch Triton ждёт [batch, -1], мы шлём [batch, 1]
+  }
+]
+
+output [
+  {
+    name: "EMBEDDINGS"
+    data_type: TYPE_FP32
+    dims: [ 2048 ]           # [batch, 2048]
+  }
+]
+
+instance_group [
+  {
+    kind: KIND_GPU
+    count: 1
+    gpus: [0]
+  }
+]

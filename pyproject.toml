@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "triton-vectoriser-server-test"
+version = "0.1.0"
+description = ""
+authors = ["liahimratman <ma.korotkov.eu@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.12"
+
+# Под Jina Embeddings v4 + совместимо с Triton 23.08
+torch = "2.6.0"          # дальше в Docker ставим именно CUDA 11.8 wheel
+transformers = "4.52.0"  # как в требованиях Jina
+peft = "0.15.2"
+timm = "1.0.19"
+einops = "0.8.0"
+torchvision = "0.21.0"   # пара к torch 2.6.0
+
+pillow = "10.4.0"
+numpy = "1.26.4"
+requests = "^2.31.0"
